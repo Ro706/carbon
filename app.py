@@ -114,13 +114,16 @@ def main():
         # Predict carbon footprint
         carbon_footprint = model.predict(input_data)[0]
 
+         # Calculate the number of trees to plant per month
+        trees_per_month = (carbon_footprint / 21.77) / 12
+
         # Display results in a popup-like alert
         st.markdown(
             f"""
             <div style='background-color: rgba(0, 0, 0, 0.8); color: white; padding: 20px; border-radius: 10px;'>
                 <h4>Carbon Footprint Result</h4>
                 <p>Your estimated carbon footprint is: <strong>{carbon_footprint:.2f} kg CO2/year</strong>.</p>
-                <p>You need to plant approximately <strong>{carbon_footprint / 21.77:.0f} trees</strong> to neutralize your carbon footprint.</p>
+                <p>You need to plant approximately <strong>{trees_per_month:.0f} trees per month</strong> to neutralize your carbon footprint.</p>
             </div>
             """,
             unsafe_allow_html=True
